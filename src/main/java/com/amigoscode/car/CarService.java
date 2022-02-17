@@ -24,7 +24,7 @@ public class CarService {
     // dependency injection - this class needs the 'CarDAO' class, so it now has dependency on the carDAO
     // within parameters we put the name of implementation class...
     // which  is found within the heap, and we want to create a dependency on it
-    public CarService(@Qualifier("fake") CarDAO carDAO) {
+    public CarService(@Qualifier("postgres") CarDAO carDAO) {
         // this is referring to the CarDAO in the heap
         this.carDAO = carDAO;
     }
@@ -95,11 +95,13 @@ public class CarService {
         Car car = getCarOrThrow(delete);
 
         // this method is saying we can't delete a car if it doesn't exist i.e. if it's not equal to 1
+        // if the id is equal to null then car doesnt exist and we can't delete it
         if (carDAO.deleteCar(delete) != 1) {
             // if that's the case then it will throw this exception
             throw new IllegalStateException("Error. couldn't delete the car");
         }
 
+        carDAO.deleteCar(delete);
 
     }
 
@@ -110,7 +112,7 @@ public class CarService {
         // if it does exist then we can update the car
         // want to create a new variable i.e. 'result' and that's equal to calling the 'carDAO' class and the 'updateCar' method
         int result = carDAO.updateCar(id, update);
-        // we want to then use that variable to see whether its not equal to 1 - if it's not equal to 1 then it couldn't be updated
+        // we want to then use that variable to see whether it's not equal to 1 - if it's not equal to 1 then it couldn't be updated
         if (result != 1) {
             throw new IllegalStateException("Sorry, car could not be updated, please check car id");
         }

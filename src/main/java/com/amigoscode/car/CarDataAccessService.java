@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 
@@ -20,11 +21,34 @@ public class CarDataAccessService implements CarDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    // METHOD TO SELECT CARS BY ID
     @Override
     public Car selectCarById(Integer id) {
+        // SQL QUERY
+        String sql = """
+                SELECT id, regnumber, brand, price
+                FROM car
+                WHERE id = ?
+                """;
+
+        // for loop - looping through List for select all cars
+        for (int i = 0; i < selectAllCars().size(); i++) {
+            // at each index i.e. each car, check the id of that car against the id that we pass through
+            if (selectAllCars().get(i).getId().equals(id)) {
+                // then return the car at the specific index
+                return selectAllCars().get(i);
+
+            }
+
+        }
+
+        // if not return null
         return null;
     }
 
+    // ----------------------------------------------------------------------
+
+    // METHOD FOR SELECTING ALL CARS
     @Override
     public List<Car> selectAllCars() {
         // sql command
@@ -32,7 +56,6 @@ public class CarDataAccessService implements CarDAO {
                 SELECT id, regnumber, brand, price 
                 FROM car
                 """;
-
 
         // rs - takes result set - advance through each result and get the value you want
         // rowNumb - takes row number
@@ -57,6 +80,9 @@ public class CarDataAccessService implements CarDAO {
 
     }
 
+    // ----------------------------------------------------------------------
+
+    // METHOD TO INSERT A CAR
     @Override
     public int insertCar(Car car) {
         String sql = """
@@ -72,6 +98,7 @@ public class CarDataAccessService implements CarDAO {
         return rowsAffected;
     }
 
+    // ----------------------------------------------------------------------
 
     @Override
     public int deleteCar(Integer id) {
@@ -79,8 +106,28 @@ public class CarDataAccessService implements CarDAO {
         return jdbcTemplate.update(sql, id);
     }
 
+    // ----------------------------------------------------------------------
+
     @Override
     public int updateCar(Integer id, Car update) {
-        return 0;
+        String sql = """
+                UPDATE car
+                SET (regnumber, brand, price) =  (?, ?, ?)
+                WHERE id = ?
+                """;
+
+        // creating a variable called rowsUpdated - implementing jdbcTemplate and then .update method
+        int rowsUpdated = jdbcTemplate.update(
+                sql,
+                // updating each property for specific row
+                update.getRegNumber(),
+                update.getBrand().name(),
+                update.getPrice(),
+                // calling on the specific id passed
+                id
+        );
+        // returning the variable above
+        return rowsUpdated;
+
     }
 }
