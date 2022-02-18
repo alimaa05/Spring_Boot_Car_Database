@@ -52,11 +52,14 @@ public class CarDataAccessService implements CarDAO {
 //    @Override
 //    public Car selectCarById(Integer id) {
 //        // todo: implement this method to get car by id from database
+
+    //SQL QUERY
 //        String sql = """
 //                SELECT id, regnumber, brand, price
 //                FROM car WHERE id = ?
 //                """;
 //
+    // ROWMAPPER TO GET ALL THE ROWS
 //        RowMapper<Car> carRowMapper = (rs, rowNum) -> {
 //            return new Car(
 //                    rs.getInt("id"),
@@ -65,12 +68,14 @@ public class CarDataAccessService implements CarDAO {
 //                    rs.getDouble("price")
 //            );
 //        };
-//
+    // WE WANT A LIST OF OUR CAR OBJECTS FROM THE DATABASE
 //        List<Car> cars = jdbcTemplate.query(sql, carRowMapper, id);
 //
+    // WANT TO LOOP THROUGH THIS LIST OF CARS, IF ITS EMPTY RETURN NULL
 //        if (cars.isEmpty()){
 //            return null;
 //        } else {
+    // IF NOT NULL THEN GET THAT CAR AND RETURN IT
 //            return cars.get(0);
 //        }
 //
