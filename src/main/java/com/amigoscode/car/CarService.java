@@ -29,6 +29,7 @@ public class CarService {
         this.carDAO = carDAO;
     }
 
+    // ----------------------------------------------------------------------
 
     // INTERNAL PRIVATE METHOD FOR US TO REUSE TO CHECK IF CAR EXISTS OR NOT
     // if it doesn't exist then we will throw an exception
@@ -39,6 +40,10 @@ public class CarService {
         }
         return car;
     }
+
+
+
+    // ----------------------------------------------------------------------
 
 
     // METHOD TO ADD A NEW CAR
@@ -58,10 +63,17 @@ public class CarService {
         }
     }
 
+
+    // ----------------------------------------------------------------------
+
     // METHOD FOR RETURNING A LIST OF ALL THE CARS
     public List<Car> getCars() {
         return carDAO.selectAllCars();
     }
+
+
+
+    // ----------------------------------------------------------------------
 
 
     // METHOD FOR GETTING CAR BY ID
@@ -84,6 +96,8 @@ public class CarService {
         return cars;
     }
 
+    // ----------------------------------------------------------------------
+
 
     // METHOD FOR DELETING A CAR
 
@@ -104,6 +118,8 @@ public class CarService {
         carDAO.deleteCar(delete);
 
     }
+
+    // ----------------------------------------------------------------------
 
     public void updateCar(Integer id, Car update) {
         // check if the car exists first - if it doesn't we want to throw an error

@@ -46,6 +46,39 @@ public class CarDataAccessService implements CarDAO {
         return null;
     }
 
+
+    // ALTERNATIVE METHOD TO GET CARS BY ID
+
+//    @Override
+//    public Car selectCarById(Integer id) {
+//        // todo: implement this method to get car by id from database
+//        String sql = """
+//                SELECT id, regnumber, brand, price
+//                FROM car WHERE id = ?
+//                """;
+//
+//        RowMapper<Car> carRowMapper = (rs, rowNum) -> {
+//            return new Car(
+//                    rs.getInt("id"),
+//                    rs.getString("regnumber"),
+//                    Brand.valueOf(rs.getString("brand")),
+//                    rs.getDouble("price")
+//            );
+//        };
+//
+//        List<Car> cars = jdbcTemplate.query(sql, carRowMapper, id);
+//
+//        if (cars.isEmpty()){
+//            return null;
+//        } else {
+//            return cars.get(0);
+//        }
+//
+//    }
+
+
+
+
     // ----------------------------------------------------------------------
 
     // METHOD FOR SELECTING ALL CARS

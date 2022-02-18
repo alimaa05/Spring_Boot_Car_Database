@@ -17,6 +17,10 @@ public class FakeCarDataAccessService implements CarDAO {
         this.db = new ArrayList<>();
     }
 
+
+    // ----------------------------------------------------------------------
+
+
     // METHOD TO SELECT CAR BY ID
     @Override
     // Car = car objects within out list
@@ -32,6 +36,9 @@ public class FakeCarDataAccessService implements CarDAO {
         return null;
     }
 
+
+    // ----------------------------------------------------------------------
+
     // METHOD TO SELECT ALL CARS
     @Override
     public List<Car> selectAllCars() {
@@ -39,12 +46,17 @@ public class FakeCarDataAccessService implements CarDAO {
     }
 
 
+    // ----------------------------------------------------------------------
+
     //METHOD TO INSERT A CAR
     @Override
     public int insertCar(Car car) {
         db.add(car);
         return 1;
     }
+
+
+    // ----------------------------------------------------------------------
 
 
     // METHOD TO DELETE A CAR
@@ -58,6 +70,9 @@ public class FakeCarDataAccessService implements CarDAO {
         // return 1 - to indicate it's done
         return 1;
     }
+
+
+    // ----------------------------------------------------------------------
 
     // METHOD TO UPDATE CAR
     @Override

@@ -28,6 +28,8 @@ public class CarController {
         carService.registerNewCar(car);
     }
 
+    // ----------------------------------------------------------------------
+
     // METHOD FOR GET REQUEST - TO GET A LIST OF THE CARS
 
     //@GetMapping is the annotation for this
@@ -37,6 +39,9 @@ public class CarController {
         // this is returning all the cars by calling on the 'carService' '.getcars' method
         return carService.getCars();
     }
+
+
+    // ----------------------------------------------------------------------
 
     // METHOD FOR GET REQUEST - TO GET A CAR BY THE ID SPECIFICALLY
 
@@ -49,6 +54,9 @@ public class CarController {
         // returning the selected car by calling on the 'carService' class and the 'selectCarById' method for the 'carId' entered
         return carService.selectCarById(carId);
     }
+
+
+    // ----------------------------------------------------------------------
 
 
     // METHOD THAT ENABLES THE DELETE REQUEST - TO DELETE A CAR
@@ -66,6 +74,9 @@ public class CarController {
         // carId because we want to delete a specific car based on the id inputed
         carService.deleteCar(carId);
     }
+
+
+    // ----------------------------------------------------------------------
 
     // METHOD THAT RESPONDS TO PUT REQUEST - TO PUT NEW DETAILS TO CAR OBJECT I.E UPDATING IT
 
